@@ -45,10 +45,10 @@ class Atelier extends Thread {
      */
     public void transformer() {
         A.destocker();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-        }
+        // try {
+        // // Thread.sleep(100);
+        // } catch (InterruptedException e) {
+        // }
         B.stocker();
     }
 

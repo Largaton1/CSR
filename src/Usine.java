@@ -8,7 +8,7 @@
  * stock
  * de pieces finies initialement vide. Chacun des deux ateliers transforme la
  * moitie
- * des unites du stock a transformer.
+ * des unites du stockThread implementsansformer.
  * La methode fonctionner() fait travailler successivement les deux ateliers et
  * affiche
  * l'etat des stocks a la fin des travaux.
@@ -17,7 +17,7 @@ class Usine {
     /**
      * Stock de pieces a transformer
      */
-    Stock stockDepart = new Stock("de depart", 10);
+    Stock stockDepart = new Stock("de depart", 10000);
     /**
      * Stock de pieces transformees
      */
@@ -25,17 +25,29 @@ class Usine {
     /**
      * Ateliers de transformation
      */
-    Atelier atelier1 = new Atelier(stockDepart, stockFin, 5);
-    Atelier atelier2 = new Atelier(stockDepart, stockFin, 5);
+    Atelier atelier1 = new Atelier(stockDepart, stockFin, 5000);
+    Atelier atelier2 = new Atelier(stockDepart, stockFin, 5000);
 
     /**
      * Effectuer le travail de l'usine
      * Utilise successivement chaque atelier pour transformer une piece et affiche
      * l'evolution de l'etat des stocks.
      */
-    public void fonctionner() {
-        atelier1.run();
-        atelier2.run();
+    public synchronized void fonctionner() {
+        atelier1.start();
+        try {
+            atelier1.join();
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+        atelier2.start();
+        try {
+            atelier2.join();
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
         stockDepart.afficher();
         stockFin.afficher();
     }
