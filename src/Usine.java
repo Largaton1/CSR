@@ -39,14 +39,15 @@ class Usine {
         try {
             atelier1.join();
         } catch (Exception e) {
-            // TODO: handle exception
+            //
+            e.printStackTrace();
         }
 
-       
         try {
             atelier2.join();
         } catch (Exception e) {
             // TODO: handle exception
+            e.printStackTrace();
         }
 
         stockDepart.afficher();

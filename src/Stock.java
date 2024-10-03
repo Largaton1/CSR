@@ -32,6 +32,7 @@ class Stock {
      */
     public synchronized void stocker() {
         nbPieces++;
+        System.out.println(Thread.currentThread().getName() + " stocke. il reste " + nbPieces + " pieces");
     }
 
     /**
@@ -39,6 +40,7 @@ class Stock {
      */
     public synchronized void destocker() {
         nbPieces--;
+        System.out.println(Thread.currentThread().getName() + " déstocke. il reste  " + nbPieces + " pieces");
     }
 
     /**
